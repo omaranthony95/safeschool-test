@@ -29,8 +29,7 @@ export default function TermsOfUse() {
 		}
 	
 		contentElement.addEventListener('scroll', handleScroll)
-	
-		// 👇 Evalúa si ya está scrolleado desde el inicio
+
 		const isAlreadyScrolled =
 			contentElement.scrollHeight <= contentElement.clientHeight + 5
 	
