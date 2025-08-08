@@ -18,6 +18,7 @@ export default function PasswordChange() {
 
 	const passwordRules = {
 		minLength: password.length >= 8,
+		maxLength: password.length <= 20,
 		number: /[0-9]/.test(password),
 		lowercase: /[a-z]/.test(password),
 		uppercase: /[A-Z]/.test(password),
@@ -29,6 +30,7 @@ export default function PasswordChange() {
 
 	const ruleList: { key: keyof typeof passwordRules; label: string }[] = [
 		{ key: 'minLength', label: 'Al menos 8 caracteres' },
+		{ key: 'maxLength', label: 'Máximo 20 caracteres' },
 		{ key: 'number', label: 'Al menos 1 número (0…9)' },
 		{ key: 'lowercase', label: 'Al menos 1 letra minúscula (a…z)' },
 		{ key: 'uppercase', label: 'Al menos 1 letra mayúscula (A…Z)' },
@@ -84,8 +86,8 @@ export default function PasswordChange() {
 					{password.length === 0 ? (
 						<>
 							<p className='text-xs text-gray-500 text-left ml-0 mt-1'>
-  Mínimo 8 caracteres con números y letras
-</p>
+								Mínimo 8 caracteres con números y letras
+							</p>
 
 							<div className='relative w-full'>
 								<input

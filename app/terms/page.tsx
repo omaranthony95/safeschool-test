@@ -14,30 +14,6 @@ export default function TermsOfUse() {
 	const [accepted, setAccepted] = useState(false)
 	const router = useRouter()
 
-	// useEffect(() => {
-	// 	const el = contentRef.current
-	// 	if (!el) return
-
-	// 	const onScroll = () => {
-	// 		const atBottom = el.scrollHeight - el.scrollTop <= el.clientHeight + 5
-	// 		setScrolledToBottom(atBottom)
-	// 		if (atBottom && scrollInterval.current) clearInterval(scrollInterval.current)
-	// 	}
-
-	// 	el.addEventListener('scroll', onScroll)
-	// 	return () => el.removeEventListener('scroll', onScroll)
-	// }, [])
-
-	// const startAutoScroll = () => {
-	// 	const el = contentRef.current
-	// 	if (!el || scrollInterval.current) return
-	// 	scrollInterval.current = setInterval(() => el.scrollBy({ top: 4 }), 16)
-	// }
-	// const stopAutoScroll = () => {
-	// 	if (scrollInterval.current) clearInterval(scrollInterval.current)
-	// 	scrollInterval.current = null
-	// }
-
 	useEffect(() => {
 		const contentElement = contentRef.current
 		if (!contentElement) return
@@ -48,7 +24,6 @@ export default function TermsOfUse() {
 
 			setScrolledToBottom(isAtBottom)
 
-			// Detiene el auto-scroll cuando llega al final
 			if (isAtBottom && scrollInterval.current) {
 				clearInterval(scrollInterval.current)
 			}
@@ -56,7 +31,6 @@ export default function TermsOfUse() {
 
 		contentElement.addEventListener('scroll', handleScroll)
 
-		// Limpieza al desmontar
 		return () => contentElement.removeEventListener('scroll', handleScroll)
 	}, [])
 
@@ -65,7 +39,7 @@ export default function TermsOfUse() {
 		if (!contentElement || scrollInterval.current) return
 
 		scrollInterval.current = setInterval(() => {
-			contentElement.scrollBy({ top: 4 }) // Scroll hacia abajo
+			contentElement.scrollBy({ top: 4 })
 		}, 16)
 	}
 
@@ -107,10 +81,9 @@ export default function TermsOfUse() {
 			<div className="relative max-w-2xl mx-auto">
 				<div
 					ref={contentRef}
-					/* 128 px = 32 * 4 = pb-32  (o usa un valor “custom”) */
 					className="max-h-[50vh] sm:max-h-[400px]
              overflow-hidden
-             pb-32                    /* ← antes era pb-4  */
+             pb-32
              text-left text-xs leading-relaxed
              text-gray-700 space-y-4 px-1 pr-4 text-justify"
 				>
