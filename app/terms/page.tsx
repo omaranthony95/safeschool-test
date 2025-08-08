@@ -17,20 +17,25 @@ export default function TermsOfUse() {
 	useEffect(() => {
 		const contentElement = contentRef.current
 		if (!contentElement) return
-
+	
 		const handleScroll = () => {
 			const isAtBottom =
 				contentElement.scrollHeight - contentElement.scrollTop <= contentElement.clientHeight + 5
-
 			setScrolledToBottom(isAtBottom)
-
+	
 			if (isAtBottom && scrollInterval.current) {
 				clearInterval(scrollInterval.current)
 			}
 		}
-
+	
 		contentElement.addEventListener('scroll', handleScroll)
-
+	
+		// 👇 Evalúa si ya está scrolleado desde el inicio
+		const isAlreadyScrolled =
+			contentElement.scrollHeight <= contentElement.clientHeight + 5
+	
+		if (isAlreadyScrolled) setScrolledToBottom(true)
+	
 		return () => contentElement.removeEventListener('scroll', handleScroll)
 	}, [])
 
